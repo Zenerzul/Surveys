@@ -1,5 +1,5 @@
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import CreateView
 
@@ -27,13 +27,21 @@ class SurveyView(View):
     def get(self, request, id):
         survey = Survey.objects.get(id=id)
         questions = Question.objects.filter(survey_id=id)
+
         for question in questions:
             if question.variants is not None:
                 question.variants = list(question.variants.split())
+
         return render(request, 'surveys/single_survey.html', context={
             'survey': survey,
             'questions': questions,
+
         })
+
+    def post(self, request, id):
+
+        return redirect('success')
+
 
 class SurveyListView(View):
     def get(self, request):
@@ -41,3 +49,8 @@ class SurveyListView(View):
         return render(request, 'surveys/survey_list.html', context={
             'surveys': surveys
         })
+
+
+class SuccessView(View):
+    def get(self, request):
+        return render(request, 'surveys/success.html')

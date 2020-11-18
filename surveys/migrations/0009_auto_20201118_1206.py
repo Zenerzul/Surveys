@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='survey',
             name='question',
-            field=multiselectfield.db.fields.MultiSelectField(max_length=200, null=True, verbose_name=surveys.models.Question),
+            field=multiselectfield.db.fields.MultiSelectField(max_length=200, null=True,
+                                                              verbose_name=surveys.models.Question),
         ),
     ]

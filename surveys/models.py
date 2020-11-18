@@ -18,3 +18,8 @@ class Question(models.Model):
     name = models.CharField(max_length=100)
     variants = models.CharField(max_length=1000, null=True, blank=True)
     multiple_choice = models.BooleanField()
+
+
+# class Answer(models.Model):
+#     user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, blank=True, null=True, related_name='user')
+#     question = models.OneToOneField(Question, on_delete=models.CASCADE, blank=True, related_name='question')

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to Survey-o!</title>
-</head>
-<body>
+{% extends 'surveys/base.html' %}
+{% block container %}
+
 <h1>Добро пожаловать на наш сервис!</h1>
 {% if user.is_authenticated %}
     <p>Рады снова видеть Вас, {{ user.username }}</p>
@@ -14,5 +10,5 @@
             <a href="{% url 'register' %}">зарегистрируйтесь</a> на сайте!</p>
 {% endif %}
 <h3>Нажмите, чтобы увидеть <a href="{% url 'survey_list' %}">действующие опросы</a></h3>
-</body>
-</html>
+
+{% endblock %}

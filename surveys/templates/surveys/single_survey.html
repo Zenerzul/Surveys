@@ -1,24 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Survey</title>
-</head>
-<body>
+{% extends 'surveys/base.html' %}
+{% block container %}
+
 <h1>{{survey.name}}</h1>
 <p class="mb-5">{{survey.description}}</p>
 <p class="mt-3">
     <form method="post">{% csrf_token %}
-            {% for question in questions %}
-                <h3>{{question.name}}</h3>
-                <p>
+        {% for question in questions %}
+            <h3>{{question.name}}</h3>
+            <p>
                 {% if question.variants == Null %}
-                    <input type="text">
+                    <input type="text"><br>
                 {% elif question.multiple_choice %}
-                        {% for variant in question.variants %}
-                            <input type="radio" name="{{variant}}">{{variant}}<br>
-                        {% endfor %}
-                    </input>
+                    {% for variant in question.variants %}
+                        <input type="radio" name="{{variant}}">{{variant}}<br>
+                    {% endfor %}
                 {% else %}
                     <select id="variant">
                         {% for variant in question.variants %}
@@ -26,10 +21,8 @@
                         {% endfor %}
                     </select>
                 {% endif %}
-                </p>
-            {% endfor %}
+            </p>
+        {% endfor %}
         <button type="submit">Отправить ответ</button>
-    </form>
-</p>
-</body>
-</html>
+
+{% endblock %}
