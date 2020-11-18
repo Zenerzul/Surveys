@@ -2,13 +2,18 @@
 {% block container %}
 
 <h1>Добро пожаловать на наш сервис!</h1>
+<div class="container mt-3">
 {% if user.is_authenticated %}
-    <p>Рады снова видеть Вас, {{ user.username }}</p>
-    <button><a href="{% url 'logout' %}">Выйти</a></button>
+    <h4 style="font-weight: normal">Рады снова видеть Вас, {{ user.username }}</h4>
+    <a class="btn btn-success" href="{% url 'logout' %}">Выйти</a>
 {% else %}
     <p>Для участия в опросах, пожалуйста, <a href="{% url 'login' %} ">войдите</a> в личный кабинет или
             <a href="{% url 'register' %}">зарегистрируйтесь</a> на сайте!</p>
 {% endif %}
-<h3>Нажмите, чтобы увидеть <a href="{% url 'survey_list' %}">действующие опросы</a></h3>
+</div>
+<div class="container mt-4 mr-0 pr-0">
+    <p>Нажмите, чтобы увидеть <a href="{% url 'survey_list' %}">действующие опросы</a></p>
+</div>
+
 
 {% endblock %}
