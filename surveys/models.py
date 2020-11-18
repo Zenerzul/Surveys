@@ -7,17 +7,25 @@ class MyUser(User):
 
 
 class Survey(models.Model):
-    name = models.CharField(max_length=100)
-    date_start = models.DateField(editable=True)
-    date_end = models.DateField(editable=True)
-    description = models.CharField(max_length=1000)
+    name = models.CharField(verbose_name='Название опроса', max_length=100)
+    date_start = models.DateField(verbose_name='Дата начала', editable=True)
+    date_end = models.DateField(verbose_name='Дата завершения', editable=True)
+    description = models.CharField(verbose_name='Описание', max_length=1000)
+
+    class Meta:
+        verbose_name = 'Опрос'
+        verbose_name_plural = 'Опросы'
 
 
 class Question(models.Model):
-    survey = models.ForeignKey(Survey, on_delete=models.CASCADE, related_name='questions', null=True)
-    name = models.CharField(max_length=100)
-    variants = models.CharField(max_length=1000, null=True, blank=True)
-    multiple_choice = models.BooleanField()
+    survey = models.ForeignKey(Survey, verbose_name='Опрос', on_delete=models.CASCADE, related_name='questions', null=True)
+    name = models.CharField(verbose_name='Название вопроса', max_length=100)
+    variants = models.CharField(verbose_name='Варианты ответов', max_length=1000, null=True, blank=True)
+    multiple_choice = models.BooleanField(verbose_name='Вопрос с множественным выбором ответа')
+
+    class Meta:
+        verbose_name = 'Вопрос'
+        verbose_name_plural = 'Вопросы'
 
 
 # class Answer(models.Model):
