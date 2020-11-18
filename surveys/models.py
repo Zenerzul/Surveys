@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 class MyUser(User):
     pass
 
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+
 
 class Survey(models.Model):
     name = models.CharField(verbose_name='Название опроса', max_length=100)
